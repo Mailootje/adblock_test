@@ -2,6 +2,9 @@
 [class*=_aos],._aos
     opacity: 0
     transition: opacity 1s, transform 1.3s
+    will-change: opacity, transform
+    -webkit-backface-visibility: hidden
+    backface-visibility: hidden
 ._aos-zoom
     transform: scale(.4)
 ._aos-left
@@ -15,3 +18,4 @@
 ._aos-done
     opacity: 1
     transform: translateZ(0) scale(1)
+    will-change: auto

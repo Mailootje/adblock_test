@@ -3,30 +3,69 @@ export function fontChecker() {
 	var testString = 'abcdefghilmnopqrstuvz'
 	var testSize = '72px'
 	var h = document.getElementsByTagName('body')[0]
-	var s = document.createElement('span')
-	s.style.fontSize = testSize
-	s.innerHTML = testString
 	var defaultWidth = {}
 	var defaultHeight = {}
-	for (var index in baseFonts) {
-		s.style.fontFamily = baseFonts[index]
-		h.appendChild(s)
-		defaultWidth[baseFonts[index]] = s.offsetWidth //width for the default font
-		defaultHeight[baseFonts[index]] = s.offsetHeight //height for the defualt font
-		h.removeChild(s)
+
+	// Create all test spans at once to batch DOM operations
+	var spans = {}
+	var fragment = document.createDocumentFragment()
+	var container = document.createElement('div')
+
+	// Hide container to prevent visual flash, but keep it measurable
+	container.style.cssText =
+		'position:absolute;left:-9999px;top:-9999px;visibility:hidden;'
+
+	for (var i = 0; i < baseFonts.length; i++) {
+		var span = document.createElement('span')
+		span.style.fontSize = testSize
+		span.style.fontFamily = baseFonts[i]
+		span.innerHTML = testString
+		spans[baseFonts[i]] = span
+		container.appendChild(span)
 	}
 
-	this.detect = function (font) {
+	fragment.appendChild(container)
+	h.appendChild(fragment)
+
+	// Read all measurements in one batch (single reflow)
+	for (var j = 0; j < baseFonts.length; j++) {
+		var font = baseFonts[j]
+		defaultWidth[font] = spans[font].offsetWidth
+		defaultHeight[font] = spans[font].offsetHeight
+	}
+
+	h.removeChild(container)
+
+	this.detect = function (fontToTest) {
 		var detected = false
-		for (var index in baseFonts) {
-			s.style.fontFamily = font + ',' + baseFonts[index] // name of the font along with the base font for fallback.
-			h.appendChild(s)
+		var testContainer = document.createElement('div')
+		testContainer.style.cssText =
+			'position:absolute;left:-9999px;top:-9999px;visibility:hidden;'
+
+		var testSpans = {}
+
+		// Create all test spans
+		for (var k = 0; k < baseFonts.length; k++) {
+			var testSpan = document.createElement('span')
+			testSpan.style.fontSize = testSize
+			testSpan.style.fontFamily = fontToTest + ',' + baseFonts[k]
+			testSpan.innerHTML = testString
+			testSpans[baseFonts[k]] = testSpan
+			testContainer.appendChild(testSpan)
+		}
+
+		h.appendChild(testContainer)
+
+		// Read all measurements in one batch
+		for (var m = 0; m < baseFonts.length; m++) {
+			var baseFont = baseFonts[m]
 			var matched =
-				s.offsetWidth != defaultWidth[baseFonts[index]] ||
-				s.offsetHeight != defaultHeight[baseFonts[index]]
-			h.removeChild(s)
+				testSpans[baseFont].offsetWidth != defaultWidth[baseFont] ||
+				testSpans[baseFont].offsetHeight != defaultHeight[baseFont]
 			detected = detected || matched
 		}
+
+		h.removeChild(testContainer)
 		return detected
 	}
 }

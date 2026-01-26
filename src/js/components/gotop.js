@@ -9,14 +9,31 @@ export function gotop() {
 		})
 	}
 	el.listeners = function () {
-		window.addEventListener('scroll', () => {
-			let y = window.scrollY
-			if (y > 0) {
-				el.gt.classList.remove('hidden')
-			} else {
-				el.gt.classList.add('hidden')
-			}
-		})
+		var ticking = false
+		var lastKnownState = null
+		window.addEventListener(
+			'scroll',
+			function () {
+				if (!ticking) {
+					window.requestAnimationFrame(function () {
+						var y = window.scrollY || window.pageYOffset
+						var shouldShow = y > 0
+						// Only update DOM if state changed
+						if (shouldShow !== lastKnownState) {
+							if (shouldShow) {
+								el.gt.classList.remove('hidden')
+							} else {
+								el.gt.classList.add('hidden')
+							}
+							lastKnownState = shouldShow
+						}
+						ticking = false
+					})
+					ticking = true
+				}
+			},
+			{ passive: true }
+		)
 		el.gt.onclick = function (e) {
 			e.preventDefault()
 			if (

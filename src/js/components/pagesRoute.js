@@ -2,9 +2,9 @@ export function pagesRoute() {
 	var t = this
 	const notFoundPage = document.querySelector('#notFound')
 	t.links = Array.from(document.querySelectorAll('[topage]'))
-	t.scrollTop = () => {
-		document.querySelector('html').scrollTop = 0
-		document.querySelector('body').scrollTop = 0
+	t.scrollTop = function () {
+		// Single call handles all browsers (modern and legacy)
+		window.scrollTo(0, 0)
 	}
 	t.navigate = (id) => {
 		//Hide current active page
