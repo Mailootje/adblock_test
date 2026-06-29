@@ -49,9 +49,9 @@ main
 #start_test, #adb_test_r
 	width: 100%
 	max-width: 12rem
-.sponsor_banner_wrap
+.collab_wrap
 	padding-top: 1rem
-.sponsor_cta
+.collab_box
 	display: flex
 	align-items: center
 	justify-content: space-between
@@ -63,25 +63,28 @@ main
 	border: 1px dashed var(--brd)
 	text-decoration: none
 	transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease
-	.sponsor_cta_text
+	.collab_text
+		min-width: 0
 		display: flex
 		flex-direction: column
 		gap: .25rem
 		b
 			font-size: 1.15rem
 			color: rgba(255,255,255,.9)
-		.sponsor_cta_sub
+		.collab_sub
 			font-size: .9rem
 			color: rgba(255,255,255,.55)
-	.sponsor_cta_action
+	.collab_action
 		display: inline-flex
 		align-items: center
 		gap: .45rem
-		white-space: nowrap
+		max-width: 100%
+		overflow-wrap: anywhere
 		font-size: .95rem
 		font-weight: 600
 		color: var(--primary)
 		svg
+			flex-shrink: 0
 			width: 1.15rem
 			height: 1.15rem
 			transition: transform .2s ease
@@ -90,13 +93,16 @@ main
 		border-color: var(--primary)
 		box-shadow: 0 8px 28px rgba(0,0,0,.28)
 		outline: none
-		.sponsor_cta_action svg
+		.collab_action svg
 			transform: translateX(3px)
 	@media (max-width: 40em)
+		flex-direction: column
+		align-items: flex-start
+		gap: .75rem
 		padding: 1.15rem 1.25rem
-		.sponsor_cta_text b
+		.collab_text b
 			font-size: 1.02rem
-		.sponsor_cta_text .sponsor_cta_sub
+		.collab_text .collab_sub
 			font-size: .82rem
 #dlg_compatibility
 	z-index: 52
