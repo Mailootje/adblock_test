@@ -1,0 +1,39 @@
+/* ---------- Hero heading + SEO copy --------- */
+.hero_head
+	text-align: center
+	margin: 1rem 0 .5rem
+	h1
+		margin: 0
+		font-size: 2.1em
+	p
+		margin: .5rem auto 0
+		max-width: 34rem
+		opacity: .75
+		line-height: 1.5
+	// Keep the sponsorship banner above the fold on mobile:
+	// compact the H1 and drop the subtitle from view (still in the DOM for crawlers).
+	@media (max-width: 40em)
+		margin: .3rem 0 .2rem
+		h1
+			font-size: 1.4em
+		p
+			display: none
+
+.seo_content
+	margin: 2.5rem auto 1rem
+	h2
+		text-align: center
+		font-size: 1.5em
+		margin: 0 0 .4rem
+	> p
+		text-align: center
+		max-width: 40rem
+		margin: 0 auto 1.5rem
+		opacity: .75
+
+.faq_list
+	display: flex
+	flex-direction: column
+	gap: .5rem
+	max-width: 44rem
+	margin: 0 auto

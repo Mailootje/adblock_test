@@ -29,7 +29,10 @@
         </noscript>
         <div id="m_test">
             <section>
-                <h1 class="sr-only">Ad Blocker Test</h1>
+                <div class="hero_head">
+                    <h1>Ad Blocker Test</h1>
+                    <p>Check in one click whether your browser, extension, VPN, or DNS filter actually blocks ads, trackers, and analytics scripts.</p>
+                </div>
                 <div class="grid">
                     <div>
                         <div class="lt_wrap">
@@ -284,6 +287,28 @@ adblock.turtlecute.org##.textads</code></pre>
                 </div>
             </section>
         </div>
+        <section class="seo_content better_r">
+            <h2>How the ad blocker test works</h2>
+            <p>One click runs three independent checks &mdash; cosmetic filters, ad-script loading, and host/DNS blocking &mdash; then scores how much your setup blocks. No real ads or trackers are ever loaded.</p>
+            <div class="faq_list">
+                <details>
+                    <summary>How does the ad blocker test work?</summary>
+                    <div>The test checks three areas: Cosmetic Filters (hiding empty ad boxes), Script Loading (blocking ad scripts and trackers), and Host Blocking (blocking tracker, analytics, and ad domains). After tests complete, you get a score with a color-coded result. Green means satisfactory protection. No real ads or trackers are activated during testing.</div>
+                </details>
+                <details>
+                    <summary>My ad blocker is configured correctly but the test does not work. Why?</summary>
+                    <div>Your configuration may not be compatible with the type of checks this tool performs. This does not mean your ad blocker is not providing protection. JavaScript limitations or missing features may prevent the test from accurately determining blocked connections. You will still receive an estimate of the percentage of connections blocked.</div>
+                </details>
+                <details>
+                    <summary>How can I get 100% on the ad blocker test?</summary>
+                    <div>A green score indicates satisfactory protection and there is no need to aim for 100%. However, if you want a perfect score, you can use the Turtlecute Host List which covers most of the host tests on the site (excluding cosmetic filters and script loading).</div>
+                </details>
+                <details>
+                    <summary>Why does the Cosmetic Filter test fail?</summary>
+                    <div>If a cosmetic filter test fails, it means this specific website is not included in your adblock's rules or filter lists. This does not mean cosmetic filtering fails on all websites. You can add custom rules for adblock.turtlecute.org to fix this.</div>
+                </details>
+            </div>
+        </section>
     </main>
     <%- include('partials/adblock/results.ejs') %>
     <% const adblock_compatibility = require('./data/adblock_compatibility.json') %>
