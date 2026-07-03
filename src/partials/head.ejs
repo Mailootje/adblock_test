@@ -55,12 +55,16 @@
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org",
-		"@type": "WebApplication",
+		"@type": "SoftwareApplication",
+		"@id": "<%= pageUrl %>#app",
 		"name": "<%= title %>",
+		"alternateName": "AdBlockTest",
 		"description": "<%= description %>",
 		"url": "<%= pageUrl %>",
 		"applicationCategory": "UtilityApplication",
+		"applicationSubCategory": "Ad blocker, tracker blocker, and DNS filter testing",
 		"operatingSystem": "Any",
+		"isAccessibleForFree": true,
 		"offers": {
 			"@type": "Offer",
 			"price": "0",
@@ -83,6 +87,14 @@
 		},
 		"image": "<%= socialImage %>",
 		"screenshot": "<%= socialImage %>",
+		"featureList": [
+			"Cosmetic filter testing",
+			"Ad script blocking checks",
+			"Host and DNS filter coverage checks",
+			"Detailed browser and blocker compatibility results"
+		],
+		"keywords": "ad blocker test, adblock test, tracker blocker test, DNS filter test, uBlock Origin test",
+		"inLanguage": "en",
 		"browserRequirements": "Requires JavaScript. Requires HTML5.",
 		"softwareVersion": "<%= require('./package.json').version %>"
 	}

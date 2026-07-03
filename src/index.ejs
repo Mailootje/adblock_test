@@ -14,99 +14,6 @@
 
 <body class="_overflowhidden">
 
-    <%- include('partials/adblock/results.ejs') %>
-    <% const adblock_compatibility = require('./data/adblock_compatibility.json') %>
-    <div class="dialog" id="dlg_compatibility" data-a11y-dialog="dlg_compatibility" aria-labelledby="dlg_compatibility-title" aria-hidden="true">
-        <div class="dialog-overlay" data-a11y-dialog-hide></div>
-        <div class="dialog-content">
-            <header>
-                <h3 id="dlg_compatibility-title">Compatibility Table</h3>
-                <button data-a11y-dialog-hide aria-label="Close compatibility table dialog"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg></button>
-            </header>
-            <section>
-                <div>
-                    <div class="card _pb-2">
-                        <p>
-                            The test relies on JavaScript, it can encounter problems due to browser limitations and varying solution approaches.<br>
-                            Below you'll find browser-adblock solutions that have been validated and tested to work effectively
-                        </p>
-                        <b class="_txt-red"><i>You will not see any ads and no trackers will be activated </i></b>
-                        <b class="_txt-blue"><i>A configuration with multiple solutions at the same time can lead to false positives.</i></b>
-                        <h5>
-                            <b class="_txt-orange"><i>While some browser+adblock solutions may not be supported by this test it's important to note that this does not imply they are not effective or reliable</i></b>
-                        </h5>
-                    </div>
-                    <div class="card _bg-bg3 _mt-2">
-                        <div class="row _ta-center">
-                            <div>Adblock Solution </div>
-                            <div>Browser-Platform</div>
-                        </div>
-                        <hr>
-                        <% for (let key in adblock_compatibility) { %>
-                        <% const value = adblock_compatibility[key]%>
-                        <% if (key != 'default' && value.hidden!=true) { %>
-                        <div class="row">
-                            <div data-th="solution (type)">
-                                <span class="rwd-table-t"><%- value.icon %>
-                                    <%= value.name %> (<%= value.type%>)</span>
-                                <br>
-                                <p>
-                                    <%- value.note %>
-                                </p>
-                            </div>
-                            <div>
-                                <div class="badges">
-                                    <% for (let b in value["no-issues"]) { %>
-                                    <span class="light-green">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M5 12l5 5l10 -10"></path>
-                                        </svg>
-                                        <%= value["no-issues"][b] %></span>
-                                    <% } %>
-
-                                    <% for (let b in value["issues"]) { %>
-                                    <span class="light-red">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M18 6l-12 12"></path>
-                                            <path d="M6 6l12 12"></path>
-                                        </svg>
-                                        <%= value["issues"][b] %></span>
-                                    <% } %>
-                                    <% for (let c in value["m-issues"]) { %>
-                                    <span class="light-orange">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path>
-                                            <path d="M12 19l0 .01"></path>
-                                        </svg>
-                                        <%= value["m-issues"][c] %></span>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <% } %>
-                        <% } %>
-                    </div>
-                </div>
-            </section>
-            <footer>
-                <button data-a11y-dialog-hide aria-label="Close dialog">
-                    Close
-                </button>
-            </footer>
-        </div>
-    </div>
-    <%- include('partials/support_me.ejs') %>
-    <%- include('partials/adblock/settings.ejs') %>
-    <%- include('partials/adblock/faq.ejs') %>
-    <%- include('partials/adblock/changelog.ejs') %>
-    <%- include('partials/adblock/logs.ejs') %>
     <%- include('partials/header.ejs', {page:'adblock'}) %>
 
     <main>
@@ -378,6 +285,99 @@ adblock.turtlecute.org##.textads</code></pre>
             </section>
         </div>
     </main>
+    <%- include('partials/adblock/results.ejs') %>
+    <% const adblock_compatibility = require('./data/adblock_compatibility.json') %>
+    <div class="dialog" id="dlg_compatibility" data-a11y-dialog="dlg_compatibility" aria-labelledby="dlg_compatibility-title" aria-hidden="true">
+        <div class="dialog-overlay" data-a11y-dialog-hide></div>
+        <div class="dialog-content">
+            <header>
+                <h3 id="dlg_compatibility-title">Compatibility Table</h3>
+                <button data-a11y-dialog-hide aria-label="Close compatibility table dialog"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg></button>
+            </header>
+            <section>
+                <div>
+                    <div class="card _pb-2">
+                        <p>
+                            The test relies on JavaScript, it can encounter problems due to browser limitations and varying solution approaches.<br>
+                            Below you'll find browser-adblock solutions that have been validated and tested to work effectively
+                        </p>
+                        <b class="_txt-red"><i>You will not see any ads and no trackers will be activated </i></b>
+                        <b class="_txt-blue"><i>A configuration with multiple solutions at the same time can lead to false positives.</i></b>
+                        <h5>
+                            <b class="_txt-orange"><i>While some browser+adblock solutions may not be supported by this test it's important to note that this does not imply they are not effective or reliable</i></b>
+                        </h5>
+                    </div>
+                    <div class="card _bg-bg3 _mt-2">
+                        <div class="row _ta-center">
+                            <div>Adblock Solution </div>
+                            <div>Browser-Platform</div>
+                        </div>
+                        <hr>
+                        <% for (let key in adblock_compatibility) { %>
+                        <% const value = adblock_compatibility[key]%>
+                        <% if (key != 'default' && value.hidden!=true) { %>
+                        <div class="row">
+                            <div data-th="solution (type)">
+                                <span class="rwd-table-t"><%- value.icon %>
+                                    <%= value.name %> (<%= value.type%>)</span>
+                                <br>
+                                <p>
+                                    <%- value.note %>
+                                </p>
+                            </div>
+                            <div>
+                                <div class="badges">
+                                    <% for (let b in value["no-issues"]) { %>
+                                    <span class="light-green">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M5 12l5 5l10 -10"></path>
+                                        </svg>
+                                        <%= value["no-issues"][b] %></span>
+                                    <% } %>
+
+                                    <% for (let b in value["issues"]) { %>
+                                    <span class="light-red">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M18 6l-12 12"></path>
+                                            <path d="M6 6l12 12"></path>
+                                        </svg>
+                                        <%= value["issues"][b] %></span>
+                                    <% } %>
+                                    <% for (let c in value["m-issues"]) { %>
+                                    <span class="light-orange">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path>
+                                            <path d="M12 19l0 .01"></path>
+                                        </svg>
+                                        <%= value["m-issues"][c] %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <% } %>
+                        <% } %>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <button data-a11y-dialog-hide aria-label="Close dialog">
+                    Close
+                </button>
+            </footer>
+        </div>
+    </div>
+    <%- include('partials/support_me.ejs') %>
+    <%- include('partials/adblock/settings.ejs') %>
+    <%- include('partials/adblock/faq.ejs') %>
+    <%- include('partials/adblock/changelog.ejs') %>
+    <%- include('partials/adblock/logs.ejs') %>
     <%- include('partials/footer.ejs') %>
     <%- include('partials/gotop.ejs') %>
 
