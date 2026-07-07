@@ -38,3 +38,11 @@
 	width: 100%
 	max-width: 44rem
 	margin: 0 auto
+	// Score previews are static examples: freeze the liquid animation so the
+	// rotating wave can't repaint/shift inside the collapsible answer.
+	.lt_template
+		.lt_wave
+			transition: none
+			&:before,
+			&:after
+				animation: none

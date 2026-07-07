@@ -53,58 +53,30 @@ main
 .collab_wrap
 	padding-top: 1rem
 .collab_box
-	display: flex
-	align-items: center
-	justify-content: space-between
-	gap: 1.25rem
-	flex-wrap: wrap
-	padding: 1.5rem 1.75rem
-	border-radius: 12px
-	background: #0e1216
-	border: 1px dashed var(--brd)
+	display: block
+	overflow: hidden
+	border-radius: 14px
+	background: #00e08a
+	border: 1px solid var(--brd)
 	text-decoration: none
 	transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease
-	.collab_text
-		min-width: 0
-		display: flex
-		flex-direction: column
-		gap: .25rem
-		b
-			font-size: 1.15rem
-			color: rgba(255,255,255,.9)
-		.collab_sub
-			font-size: .9rem
-			color: rgba(255,255,255,.55)
-	.collab_action
-		display: inline-flex
-		align-items: center
-		gap: .45rem
-		max-width: 100%
-		overflow-wrap: anywhere
-		font-size: .95rem
-		font-weight: 600
-		color: var(--primary)
-		svg
-			flex-shrink: 0
-			width: 1.15rem
-			height: 1.15rem
-			transition: transform .2s ease
+	line-height: 0
+	picture, img
+		display: block
+	img
+		width: 100%
+		height: auto
+		aspect-ratio: 1940 / 240
+		object-fit: cover
 	&:hover, &:focus-visible
 		transform: translateY(-1px)
 		border-color: var(--primary)
 		box-shadow: 0 8px 28px rgba(0,0,0,.28)
 		outline: none
-		.collab_action svg
-			transform: translateX(3px)
-	@media (max-width: 40em)
-		flex-direction: column
-		align-items: flex-start
-		gap: .75rem
-		padding: 1.15rem 1.25rem
-		.collab_text b
-			font-size: 1.02rem
-		.collab_text .collab_sub
-			font-size: .82rem
+	@media (max-width: 48em)
+		border-radius: 12px
+		img
+			aspect-ratio: 720 / 240
 #dlg_compatibility
 	z-index: 52
 #adb_test
@@ -452,7 +424,7 @@ footer>div
 	position: inherit
 	left: 100%
 	margin-left: 10px
-	bottom: calc(45% - var(--liquid-percentage))
+	bottom: calc(50% - var(--liquid-percentage))
 	transform: translateY(50%)
 	background: var(--liquid-color)
 	color: var(--white)
