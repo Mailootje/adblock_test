@@ -13,11 +13,16 @@
 	// Keep the sponsorship banner above the fold on mobile:
 	// compact the H1 and drop the subtitle from view (still in the DOM for crawlers).
 	@media (max-width: 40em)
-		margin: .3rem 0 .2rem
+		margin: .15rem 0 .1rem
 		h1
-			font-size: 1.4em
+			font-size: 1.28em
+			line-height: 1.12
 		p
 			display: none
+	@media (max-width: 40em) and (max-height: 720px)
+		margin: 0
+		h1
+			font-size: 1.2em
 
 .seo_content
 	margin: 2.5rem auto 1rem
