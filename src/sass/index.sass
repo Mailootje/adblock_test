@@ -56,27 +56,17 @@ main
 	display: block
 	overflow: hidden
 	border-radius: 14px
-	background: #00e08a
-	border: 1px solid var(--brd)
 	text-decoration: none
-	transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease
 	line-height: 0
 	picture, img
 		display: block
 	img
 		width: 100%
 		height: auto
-		aspect-ratio: 1940 / 240
-		object-fit: cover
-	&:hover, &:focus-visible
-		transform: translateY(-1px)
-		border-color: var(--primary)
-		box-shadow: 0 8px 28px rgba(0,0,0,.28)
-		outline: none
-	@media (max-width: 48em)
-		border-radius: 12px
-		img
-			aspect-ratio: 720 / 240
+		border-radius: inherit
+	&:focus-visible
+		outline: 2px solid var(--focus)
+		outline-offset: 3px
 #dlg_compatibility
 	z-index: 52
 #adb_test
