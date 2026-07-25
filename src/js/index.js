@@ -291,11 +291,7 @@ function markUnknownHost(url, hostDiv, parent, k1, k2, reason = 'unknown') {
 async function check_url(url, div, parent, k1, k2) {
 	const config = {
 		method: 'HEAD',
-		mode: 'no-cors',
-		// A few test hosts redirect HTTPS probes to insecure HTTP login pages.
-		// Keep the redirect opaque so the initial HTTPS request still tells us
-		// whether the host was blocked without creating mixed content.
-		redirect: 'manual'
+		mode: 'no-cors'
 	}
 	const hostDiv = document.createElement('div')
 	hostDiv.onclick = () => {
