@@ -10,6 +10,15 @@ import { aos } from './components/aos'
 import { fadeIn, fadeOut } from './components/fade'
 import { Snackbar } from './components/snackbar'
 import { LocalStorageManager } from './components/localStorage'
+
+// These icons always accompany visible text, so exposing them as unnamed
+// images only adds noise and creates invalid accessibility-tree entries.
+Object.keys(icons).forEach((key) => {
+	icons[key] = icons[key]
+		.replace(/\srole=(['"])img\1/g, '')
+		.replace('<svg ', "<svg aria-hidden='true' focusable='false' ")
+})
+
 const DEFAULT_SETTINGS = {
 	collapseAll: true,
 	showCF: true,
