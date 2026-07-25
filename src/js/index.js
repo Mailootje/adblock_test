@@ -348,7 +348,7 @@ async function fetchTests() {
 		catEl.className = 'grid'
 		catEl.id = key
 		catEl.innerHTML =
-			'<div><h5>' + icons[key] + '&nbsp;&nbsp;' + key + '</h5></div>'
+			'<div><h2>' + icons[key] + '&nbsp;&nbsp;' + key + '</h2></div>'
 		testWrapper.appendChild(catEl)
 		const category = data[key]
 		let total_hosts = 0
