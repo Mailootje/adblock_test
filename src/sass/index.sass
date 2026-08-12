@@ -67,12 +67,12 @@ main
 	border-radius: 14px
 	text-decoration: none
 	line-height: 0
-	picture, img
-		display: block
-	img
-		width: 100%
-		height: auto
-		border-radius: inherit
+	width: 100%
+	aspect-ratio: 1940 / 240
+	background: center / 100% 100% no-repeat url("../media/wide.webp")
+	@media (max-width: 48em)
+		aspect-ratio: 1200 / 400
+		background-image: url("../media/narrow.webp")
 	&:focus-visible
 		outline: 2px solid var(--focus)
 		outline-offset: 3px

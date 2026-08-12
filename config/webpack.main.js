@@ -84,6 +84,10 @@ module.exports = {
 				type: 'asset/resource'
 			},
 			{
+				test: /\.webp$/i,
+				type: 'asset/inline'
+			},
+			{
 				test: /\.ejs$/i,
 				use: ['html-loader', 'template-ejs-loader']
 			},
