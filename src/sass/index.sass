@@ -60,7 +60,10 @@ main
 			padding-top: .25rem
 			padding-bottom: .25rem
 .collab_wrap
-	padding-top: 1rem
+	display: flex
+	flex-direction: column
+	gap: 1rem
+	padding: 1rem .5rem .5rem
 .collab_box
 	display: block
 	overflow: hidden
@@ -76,8 +79,150 @@ main
 	&:focus-visible
 		outline: 2px solid var(--focus)
 		outline-offset: 3px
+.notice
+	border-radius: 10px
+	text-align: left
+	font-size: .875rem
+	line-height: 1.4
+	background: var(--notice-bg)
+	color: var(--txt)
+	border: 1px solid var(--notice-brd)
+	b
+		color: var(--notice-ac)
+	.notice_ico, .star_ico
+		flex: 0 0 auto
+		height: 1.1rem
+		width: 1.1rem
+	.notice_ico
+		stroke: var(--notice-ac)
+	.star_ico
+		fill: var(--orange)
+	button
+		display: inline
+		min-width: unset
+		height: auto
+		margin: 0
+		padding: 0
+		border: 0
+		background: transparent
+		box-shadow: none
+		font: inherit
+		font-weight: 600
+		color: var(--notice-ac)
+		text-decoration: underline
+		text-decoration-thickness: 1px
+		text-decoration-skip-ink: auto
+		text-underline-offset: .2em
+		&:active
+			transform: none
+		&:hover
+			text-decoration: none
+.notice_row
+	display: flex
+	align-items: center
+	flex-wrap: wrap
+	gap: .35rem .75rem
+	margin: 0
+	padding: .45rem .7rem
+	>span
+		flex: 1 1 14rem
+		min-width: 0
+	@media (max-width: 40em)
+		align-items: flex-start
+		>svg
+			margin-top: .1rem
+
+.star_ask
+	display: inline-flex
+	align-items: center
+	gap: .35rem
+	flex: 0 0 auto
+	margin-left: auto
+	white-space: nowrap
+	font-weight: 600
+	text-decoration: none
+	color: var(--notice-ac)
+	&:hover
+		text-decoration: underline
+	@media (max-width: 40em)
+		flex: 1 1 100%
+		margin-left: 0
+
 #dlg_compatibility
 	z-index: 52
+.compat_wrap
+	display: flex
+	flex-direction: column
+	gap: .85rem
+.compat_lead
+	font-size: .85rem
+	line-height: 1.5
+	color: var(--txt-h)
+.compat_list
+	display: flex
+	flex-direction: column
+	gap: .5rem
+	padding: 0
+	list-style: none
+.compat_item
+	display: flex
+	align-items: flex-start
+	gap: .7rem
+	padding: .7rem .8rem
+	border-radius: 12px
+	background: var(--bg2)
+	border: 1px solid var(--brd)
+.compat_ico
+	flex: 0 0 auto
+	display: flex
+	align-items: center
+	justify-content: center
+	height: 1.75rem
+	width: 1.75rem
+	border-radius: 8px
+	background: var(--bg)
+	>svg
+		height: 1.15rem
+		width: 1.15rem
+.compat_main
+	flex: 1 1 auto
+	min-width: 0
+	display: flex
+	flex-direction: column
+	gap: .2rem
+.compat_head
+	display: flex
+	align-items: baseline
+	flex-wrap: wrap
+	gap: .4rem
+.compat_name
+	font-weight: 600
+.compat_type, .compat_note
+	font-size: .8rem
+	color: var(--txt-h)
+.compat_note
+	line-height: 1.45
+.compat_on
+	font-size: .85rem
+	line-height: 1.45
+	>span
+		color: var(--txt-h)
+.compat_state
+	flex: 0 0 auto
+	font-size: .75rem
+	font-weight: 600
+	white-space: nowrap
+	padding: .2rem .55rem
+	border-radius: 2rem
+	&._ok
+		background: var(--green-h)
+		color: var(--green-d)
+	&._mixed
+		background: var(--notice-bg)
+		color: var(--notice-ac)
+	&._bad
+		background: var(--red-h)
+		color: var(--red-d)
 #adb_test
 	display: none
 	&.measuring
@@ -127,31 +272,6 @@ footer>div
 	background: var(--bg2)
 	border: 1px solid var(--brd)
 	transition: border-color 180ms ease, box-shadow 180ms ease
-.rwd-table-t
-	display: flex
-	gap: .5rem
-	align-items: center
-.badges
-	display: flex
-	flex-wrap: wrap
-	gap: .5rem
-	>*
-		padding: 5px
-		display: flex
-		align-items: center
-		gap: 5px
-		background: var(--bg2)
-		border-radius: var(--radius)
-		&.light-green
-			background: var(--green-h)
-			color: var(--green-d)
-		&.light-red
-			background: var(--red-h)
-			color: var(--red-d)
-		&.light-orange
-			background: var(--orange-h)
-			color: var(--orange-d)
-
 .test_wrapper svg,.test_card svg
 	height: 1.5rem
 .test_wrapper>div>div>h2,.test_card>h2,.test>span

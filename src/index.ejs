@@ -113,22 +113,25 @@
                 <div class="collab_wrap">
                     <a href="https://shockvpn.com/?utm_source=adblock.turtlecute.org" class="collab_box" data-umami-event="ShockVPN banner click" data-umami-event-partner="ShockVPN" target="_blank" rel="noopener noreferrer sponsored" aria-label="Learn more about ShockVPN (opens in a new tab)">
                     </a>
-                    <br>
-                    <div class="_bg-orange _txt-black _radius _p-1 better_r">
-                        <b>Some browser/blocker combinations may affect results. If uBlock Origin breaks the test, allow adblock.turtlecute.org.</b><br>
-                        <button data-a11y-dialog-show="dlg_compatibility" aria-label="View compatibility table">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+                    <div class="notice">
+                        <p class="notice_row">
+                            <svg class="notice_ico" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
                                 <path stroke="none" d="M0 0h24v24H0z" />
-                                <path d="m7 12 5 5L22 7M2 12l5 5m5-5 5-5" /></svg>
-                            Compatibility</button>
+                                <path d="M12 9v4m0 3v.01" />
+                                <path d="M10.363 3.591 2.257 17.125a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636-2.871L13.637 3.59a1.914 1.914 0 0 0-3.274 0z" />
+                            </svg>
+                            <span>Some setups, like Firefox with uBlock Origin, can skew results. <button data-a11y-dialog-show="dlg_compatibility">See the tested setups</button></span>
+                            <a class="star_ask" href="https://github.com/Turtlecute33/adblocktest" target="_blank" rel="noopener noreferrer" data-umami-event="GitHub star click" aria-label="Star this project on GitHub (opens in a new tab)">
+                                <svg class="star_ico" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+                                    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                                </svg>
+                                Star on GitHub</a>
+                        </p>
                     </div>
                 </div>
             </section>
             <section id="adb_test">
                 <div class="grid">
-                    <div>
-                        <hr>
-                    </div>
                     <div id="cf_wrap">
                         <div class="test_card">
                             <h2>
@@ -305,79 +308,75 @@ adblock.turtlecute.org##.textads</code></pre>
         <div class="dialog-overlay" data-a11y-dialog-hide></div>
         <div class="dialog-content">
             <header>
-                <h3 id="dlg_compatibility-title">Compatibility Table</h3>
+                <h3 id="dlg_compatibility-title">Tested setups</h3>
                 <button data-a11y-dialog-hide aria-label="Close compatibility table dialog"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
                         </path>
                     </svg></button>
             </header>
+            <%
+            const PLATFORM = { macos: 'macOS', ios: 'iOS', android: 'Android', windows: 'Windows', windows11: 'Windows 11', 'linux(mint)': 'Linux' }
+            const BROWSER = { brave: 'Brave', safari: 'Safari', chrome: 'Chrome', firefox: 'Firefox', edge: 'Edge', kiwibrowser: 'Kiwi' }
+            function prettyLabel(token) {
+                const i = token.lastIndexOf('-')
+                if (i > 0) {
+                    const b = token.slice(0, i)
+                    const p = token.slice(i + 1)
+                    if (BROWSER[b] && PLATFORM[p]) return BROWSER[b] + ' on ' + PLATFORM[p]
+                }
+                if (PLATFORM[token]) return PLATFORM[token]
+                const words = token.replace(/-/g, ' ')
+                return words.charAt(0).toUpperCase() + words.slice(1)
+            }
+            const RANK = { ok: 0, mixed: 1, bad: 2 }
+            const STATE_LABEL = { ok: 'Test works', mixed: 'Some limits', bad: 'Cannot test' }
+            const ICON = { dns: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0M3.6 9h16.8M3.6 15h16.8"/><path d="M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18"/></svg>` }
+            const kinds = [
+                { state: 'mixed', icon: ICON.dns, name: 'Other DNS filters', type: 'Pi-hole, AdGuard Home, Control D, Quad9', desc: 'Not tested one by one. Only domain blocking can be measured, so the cosmetic score stays low. If the filter replies with a block page, the request looks successful and the score drops further. Turn that option off, and add a browser extension to cover the rest.' }
+            ]
+            const products = Object.keys(adblock_compatibility)
+                .filter((k) => k !== 'default' && adblock_compatibility[k].hidden !== true)
+                .map((k) => {
+                    const v = adblock_compatibility[k]
+                    const ok = v['no-issues'] || []
+                    const mixed = v['m-issues'] || []
+                    const bad = v['issues'] || []
+                    const state = ok.length === 0 ? 'bad' : mixed.length || bad.length ? 'mixed' : 'ok'
+                    const type = v.name.toLowerCase().includes(v.type.toLowerCase()) ? '' : v.type
+                    return { state: state, icon: v.icon, name: v.name, type: type, ok: ok, mixed: mixed, note: v.note }
+                })
+            const rows = kinds.concat(products).sort((a, b) => RANK[a.state] - RANK[b.state])
+            %>
             <section>
-                <div>
-                    <div class="card _pb-2">
-                        <p>
-                            The test relies on JavaScript, it can encounter problems due to browser limitations and varying solution approaches.<br>
-                            Below you'll find browser-adblock solutions that have been validated and tested to work effectively
-                        </p>
-                        <b class="_txt-red"><i>You will not see any ads and no trackers will be activated </i></b>
-                        <b class="_txt-blue"><i>A configuration with multiple solutions at the same time can lead to false positives.</i></b>
-                        <h5>
-                            <b class="_txt-orange"><i>While some browser+adblock solutions may not be supported by this test it's important to note that this does not imply they are not effective or reliable</i></b>
-                        </h5>
-                    </div>
-                    <div class="card _bg-bg3 _mt-2">
-                        <div class="row _ta-center">
-                            <div>Adblock Solution </div>
-                            <div>Browser-Platform</div>
-                        </div>
-                        <hr>
-                        <% for (let key in adblock_compatibility) { %>
-                        <% const value = adblock_compatibility[key]%>
-                        <% if (key != 'default' && value.hidden!=true) { %>
-                        <div class="row">
-                            <div data-th="solution (type)">
-                                <span class="rwd-table-t"><%- value.icon %>
-                                    <%= value.name %> (<%= value.type%>)</span>
-                                <br>
-                                <p>
-                                    <%- value.note %>
-                                </p>
-                            </div>
-                            <div>
-                                <div class="badges">
-                                    <% for (let b in value["no-issues"]) { %>
-                                    <span class="light-green">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M5 12l5 5l10 -10"></path>
-                                        </svg>
-                                        <%= value["no-issues"][b] %></span>
-                                    <% } %>
-
-                                    <% for (let b in value["issues"]) { %>
-                                    <span class="light-red">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M18 6l-12 12"></path>
-                                            <path d="M6 6l12 12"></path>
-                                        </svg>
-                                        <%= value["issues"][b] %></span>
-                                    <% } %>
-                                    <% for (let c in value["m-issues"]) { %>
-                                    <span class="light-orange">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <path d="M8 8a3.5 3 0 0 1 3.5 -3h1a3.5 3 0 0 1 3.5 3a3 3 0 0 1 -2 3a3 4 0 0 0 -2 4"></path>
-                                            <path d="M12 19l0 .01"></path>
-                                        </svg>
-                                        <%= value["m-issues"][c] %></span>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <% } %>
-                        <% } %>
-                    </div>
+                <div class="compat_wrap">
+                    <p class="compat_lead">Green means the test can measure that setup. Yellow and red only mean the test cannot see everything. Your blocker can still protect you well.</p>
+                    <ul class="compat_list">
+                        <% rows.forEach(function (r) { %>
+                        <li class="compat_item">
+                            <span class="compat_ico" aria-hidden="true"><%- r.icon %></span>
+                            <span class="compat_main">
+                                <span class="compat_head">
+                                    <b class="compat_name"><%= r.name %></b>
+                                    <% if (r.type) { %><span class="compat_type"><%= r.type %></span><% } %>
+                                </span>
+                                <% if (r.desc) { %>
+                                <span class="compat_on"><%= r.desc %></span>
+                                <% } %>
+                                <% if (r.ok && r.ok.length) { %>
+                                <span class="compat_on"><span>Works on</span> <%= r.ok.map(prettyLabel).join(', ') %></span>
+                                <% } %>
+                                <% if (r.mixed && r.mixed.length) { %>
+                                <span class="compat_on"><span>Unreliable on</span> <%= r.mixed.map(prettyLabel).join(', ') %></span>
+                                <% } %>
+                                <% if (r.state !== 'ok' && r.note && r.note.trim()) { %>
+                                <span class="compat_note"><%- r.note %></span>
+                                <% } %>
+                            </span>
+                            <span class="compat_state _<%= r.state %>"><%= STATE_LABEL[r.state] %></span>
+                        </li>
+                        <% }) %>
+                    </ul>
+                    <p class="compat_lead">Two blockers at the same time can also give a wrong score.</p>
                 </div>
             </section>
             <footer>
