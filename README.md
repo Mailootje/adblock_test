@@ -42,11 +42,15 @@ The list ships with [Blokada](https://blokada.org/) and the [OISD List](https://
 
 ## Local development
 
+Requires Node.js 22.15 or newer.
+
 ```sh
 npm install
 npm run dev      # webpack dev server
 npm run build    # production build to /dist
 ```
+
+When homepage content changes, update its `<lastmod>` value in `src/sitemap.xml` before deploying.
 
 ## Contributing
 

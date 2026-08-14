@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Clean install dependencies
@@ -26,9 +26,6 @@ jobs:
 
       - name: Build app
         run: npm run build
-
-      - name: Purge
-        run: npm run purge
 
       - name: Create CNAME file
         run: echo "adblock.turtlecute.org" > dist/CNAME
