@@ -141,11 +141,11 @@ main
 	text-align: left
 	text-decoration: none
 	color: var(--txt)
-	background: var(--bg2)
-	border: 1px solid var(--brd)
+	background: var(--info-bg)
+	border: 1px solid var(--info-brd)
 	transition: border-color 160ms ease
 	&:hover
-		border-color: var(--primary)
+		border-color: var(--info-ac)
 	@media (max-width: 40em)
 		align-items: flex-start
 		>svg
@@ -157,13 +157,13 @@ main
 	flex: 0 0 auto
 	height: 1.1rem
 	width: 1.1rem
-	fill: var(--orange)
+	fill: var(--info-ac)
 .support_cta
 	flex: 0 0 auto
 	margin-left: auto
 	white-space: nowrap
 	font-weight: 600
-	color: var(--primary)
+	color: var(--info-ac)
 	.support_box:hover &
 		text-decoration: underline
 	@media (max-width: 40em)
