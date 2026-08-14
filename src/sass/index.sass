@@ -62,12 +62,12 @@ main
 .collab_wrap
 	display: flex
 	flex-direction: column
-	gap: 1rem
-	padding: 1rem .5rem .5rem
+	gap: var(--sp-3)
+	padding: var(--sp-3) var(--sp-1) var(--sp-1)
 .collab_box
 	display: block
 	overflow: hidden
-	border-radius: 14px
+	border-radius: var(--r-lg)
 	text-decoration: none
 	line-height: 0
 	width: 100%
@@ -80,7 +80,7 @@ main
 		outline: 2px solid var(--focus)
 		outline-offset: 3px
 .notice
-	border-radius: 10px
+	border-radius: var(--r-md)
 	text-align: left
 	font-size: .875rem
 	line-height: 1.4
@@ -118,9 +118,9 @@ main
 	display: flex
 	align-items: center
 	flex-wrap: wrap
-	gap: .35rem .75rem
+	gap: var(--sp-1) var(--sp-2)
 	margin: 0
-	padding: .45rem .7rem
+	padding: var(--sp-1) var(--sp-2)
 	>span
 		flex: 1 1 14rem
 		min-width: 0
@@ -133,9 +133,9 @@ main
 	display: flex
 	align-items: center
 	flex-wrap: wrap
-	gap: .35rem .75rem
-	padding: .45rem .7rem
-	border-radius: 10px
+	gap: var(--sp-1) var(--sp-2)
+	padding: var(--sp-1) var(--sp-2)
+	border-radius: var(--r-md)
 	font-size: .875rem
 	line-height: 1.4
 	text-align: left
@@ -168,22 +168,22 @@ main
 		text-decoration: underline
 	@media (max-width: 40em)
 		flex: 1 1 100%
-		margin-left: calc(1.1rem + .75rem)
+		margin-left: calc(1.1rem + var(--sp-2))
 
 #dlg_compatibility
 	z-index: 52
 .compat_wrap
 	display: flex
 	flex-direction: column
-	gap: .85rem
+	gap: var(--sp-2)
 .compat_lead
-	font-size: .85rem
+	font-size: .875rem
 	line-height: 1.5
 	color: var(--txt-h)
 .compat_list
 	display: flex
 	flex-direction: column
-	gap: .5rem
+	gap: var(--sp-1)
 	padding: 0
 	list-style: none
 .compat_item
@@ -191,9 +191,9 @@ main
 	grid-template-columns: auto 1fr auto
 	grid-template-areas: "ico head state" ". body body"
 	align-items: start
-	gap: .15rem .7rem
-	padding: .7rem .8rem
-	border-radius: 12px
+	gap: .15rem var(--sp-2)
+	padding: var(--sp-2)
+	border-radius: var(--r-md)
 	background: var(--bg2)
 	border: 1px solid var(--brd)
 	@media (max-width: 40em)
@@ -206,7 +206,7 @@ main
 	justify-content: center
 	height: 1.75rem
 	width: 1.75rem
-	border-radius: 8px
+	border-radius: var(--r-sm)
 	background: var(--bg)
 	>svg
 		height: 1.15rem
@@ -233,7 +233,7 @@ main
 .compat_note
 	line-height: 1.45
 .compat_on
-	font-size: .85rem
+	font-size: .875rem
 	line-height: 1.45
 	>span
 		color: var(--txt-h)
@@ -270,7 +270,7 @@ main
 footer>div
 	background: var(--bg2)
 .card
-	border-radius: 12px
+	border-radius: var(--r-md)
 	box-shadow: none
 	background: var(--bg2)
 .test_block,.test>span
@@ -301,8 +301,8 @@ footer>div
 	display: flex
 	flex-direction: column
 .test_wrapper>div,.test_card
-	padding: .75rem
-	border-radius: 12px
+	padding: var(--sp-2)
+	border-radius: var(--r-md)
 	background: var(--bg2)
 	border: 1px solid var(--brd)
 	transition: border-color 180ms ease, box-shadow 180ms ease
@@ -320,7 +320,7 @@ footer>div
 .test
 	background-color: var(--red)
 	color: var(--black)
-	border-radius: 8px
+	border-radius: var(--r-sm)
 	display: flex
 	flex-direction: column
 	align-items: center
@@ -333,7 +333,7 @@ footer>div
 .test>div>div
 	height: 45px
 	width: 100%
-	border-radius: 8px
+	border-radius: var(--r-sm)
 	background: var(--bg2)
 	color: var(--txt)
 	padding: 0.5rem
@@ -511,7 +511,7 @@ footer>div
 	display: flex
 	flex-direction: column
 .lt_value_2
-	border-radius: 8px
+	border-radius: var(--r-sm)
 	color: var(--black)
 	padding: .4rem
 
@@ -587,7 +587,7 @@ footer>div
 	padding: 10px
 	font-size: 20px
 	font-weight: bold
-	border-radius: 8px
+	border-radius: var(--r-sm)
 	transition: 3s
 
 .lt_cwrap .lt_value::after
