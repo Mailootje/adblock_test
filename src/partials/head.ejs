@@ -1,6 +1,6 @@
 <%
 	const pageUrl = typeof canonical !== 'undefined' && canonical ? canonical : `https://${url}`
-	const socialImage = typeof preview_thumbnail !== 'undefined' && preview_thumbnail ? preview_thumbnail : 'https://adblock.turtlecute.org/assets/preview_toolz.png'
+	const socialImage = typeof preview_thumbnail !== 'undefined' && preview_thumbnail ? preview_thumbnail : 'https://adblock.turtlecute.org/assets/preview_toolz.jpg'
 %>
 <head>
     <meta charset="UTF-8">
@@ -45,7 +45,7 @@
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="<%= pageUrl %>">
+	<meta name="twitter:url" content="<%= pageUrl %>">
 	<meta name="twitter:title" content="<%= title %>">
 	<meta name="twitter:description" content="<%= description %>">
 	<meta name="twitter:image" content="<%= socialImage %>">
@@ -128,6 +128,46 @@
 				"acceptedAnswer": {
 					"@type": "Answer",
 					"text": "A green score indicates satisfactory protection and there is no need to aim for 100%. However, if you want a perfect score, you can use the Turtlecute Host List which covers most of the host tests on the site (excluding cosmetic filters and script loading)."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "What do the three test categories check?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Cosmetic Filter: whether empty ad boxes, cookie banners and similar elements are hidden or removed. Script Loading: whether ad scripts and trackers are stopped from loading. Host: whether domains that serve trackers, analytics or ads are blocked."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "What do Blocked and Not Blocked mean?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Blocked means the connection to a host or script failed, or an ad box was removed, so your ad blocker caught it. Not Blocked means the connection went through, or the box stayed in place, so that item was not filtered by your setup."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "How is my score calculated, and what do the colors mean?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Points come from how many checks your setup blocks in each category. Red means your ad blocker may not be enabled or configured, orange means okay but you can do better, and green means great, you are ready to surf."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "Which ad blockers and DNS filters do you recommend?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "DNSFilter as the main DNS resolver with NextDNS as a great alternative, plus uBlock Origin in Brave or Kiwi Browser on desktop and Android, and Brave or Safari with the AdGuard extension on iOS. Recommended filter lists: HaGeZi Ultimate blocklists, uBlock filters, and AdGuard filters."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "What other ad blocker test tools do you recommend?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "CanYouBlockIt, IP Leak, Block Ads Test, Browser Fingerprint by EFF, and the ad blocker and popup tests by raymondhill."
 				}
 			}
 		]

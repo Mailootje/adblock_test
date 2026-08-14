@@ -32,17 +32,7 @@ module.exports = merge(main, {
 					]
 				}
 			})
-		],
-		splitChunks: {
-			chunks: 'all',
-			cacheGroups: {
-				vendor: {
-					test: /[\\/]node_modules[\\/]/,
-					name: 'vendors',
-					priority: 10
-				}
-			}
-		}
+		]
 	},
 	plugins: [new CleanWebpackPlugin()],
 	performance: {

@@ -8,7 +8,7 @@
 			url: 'adblock.turtlecute.org',
 			canonical: 'https://adblock.turtlecute.org/',
 			faqSchema: true,
-			preview_thumbnail:'https://adblock.turtlecute.org/assets/preview_toolz.png',
+			preview_thumbnail:'https://adblock.turtlecute.org/assets/preview_toolz.jpg',
 			keywords:'adblock test,ad block test,ad blocker test,adblock,test adblock,analytics,trackers,ads,cosmetic filter,ublock, ublockorigin,adblock extension,script loading'
 		}) %>
 
@@ -179,19 +179,18 @@
                                     <summary>Why does the Cosmetic Filter test fail?</summary>
                                     <div class="better_r _p-1">
                                         <p>
-                                            If a cosmetic filter test fails, it simply means that the specific website being tested
-                                            (in this case adblock.turtlecute.org) isn't included in any of adblock's rules or lists.<br>
-                                            It's important to note that this does not mean that cosmetic filtering fails on all websites.<br> You can
-                                            confirm this by visiting a popular, ad-rich site where you're unlikely to see any ad boxes.<br>
-                                            The purpose of this test is to assess the functionality of the blocking feature, not to determine its scope
-                                            or coverage. By adding the following rules to your adblock solution, you may be able to solve the problem:
+                                            If the cosmetic filter test fails, it means this site (adblock.turtlecute.org) is not included
+                                            in your blocker's filter lists.<br>
+                                            This does not mean cosmetic filtering fails everywhere. You can confirm this by
+                                            visiting a popular, ad-rich site where you're unlikely to see any ad boxes.<br>
+                                            This test checks whether the blocking feature works, not how broad its coverage is.
+                                            Adding the following rules to your adblock solution may fix the result:
                                         </p>
 
                                         <pre>
 											<code>adblock.turtlecute.org##.adbox.banner_ads.adsbox
 adblock.turtlecute.org##.textads</code></pre>
-                                        <b>Adding these rules could lead to a successful test result proving your adblock
-                                            solution have that feature of blocking with cosmetic filters</b>
+                                        <b>With these rules in place, a passing result proves your blocker supports cosmetic filtering.</b>
                                     </div>
                                 </details>
 
@@ -227,20 +226,18 @@ adblock.turtlecute.org##.textads</code></pre>
                                     <summary>Why does the Ad Script Loading test fail?</summary>
                                     <div class="better_r _p-1">
                                         <p>
-                                            Same as the cosmetic tests. If an ad script load test fails, it usually means that the specific website being
-                                            tested isn't covered by any of adblock's rules or lists, especially for blocking ad-related scripts like my fake
+                                            Same as the cosmetic test. If an ad script load test fails, it usually means this site
+                                            is not covered by your blocker's filter lists, especially for blocking ad-related scripts like the fake
                                             <code>ads.js</code><br>
-                                            However, this error doesn't indicate a general failure of ad script blocking on all websites.<br>
-                                            To check, you can visit a popular website known for its abundance of ads scripts.<br>
-                                            Chances are that you won't encounter any blocked ad scripts.
-                                            It's important to understand that this test is designed to evaluate the functionality of ad script blocking, not
-                                            its scope or effectiveness.
-                                            To potentially fix the problem, consider adding the following rules to your adblock solution:
+                                            This does not indicate a general failure of ad script blocking. To check, visit a popular
+                                            website known for its abundance of ad scripts: chances are you won't encounter any
+                                            unblocked ones.<br>
+                                            This test evaluates whether ad script blocking works, not its scope or effectiveness.
+                                            To potentially fix the result, add the following rules to your adblock solution:
                                         </p>
                                         <pre><code>/pagead.js$domain=adblock.turtlecute.org
 /widget/ads.</code></pre>
-                                        <b>Adding these rules could lead to a successful test result proving your adblock
-                                            solution have that feature of blocking script loading</b>
+                                        <b>With these rules in place, a passing result proves your blocker supports ad script blocking.</b>
                                     </div>
                                 </details>
 

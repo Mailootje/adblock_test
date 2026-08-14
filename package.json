@@ -15,7 +15,7 @@
 	],
 	"scripts": {
 		"dev": "webpack serve --config config/webpack.dev.js",
-		"build": "webpack --config config/webpack.prod.js",
+		"build": "webpack --config config/webpack.prod.js && node config/purgecss.mjs && node config/sitemap-lastmod.mjs",
 		"build-list": "node src/script/build_list.js",
 		"purge": "node config/purgecss.mjs",
 		"format": "prettier --write '.eslintrc.js' '.prettierrc.js' 'package.json' 'config/**/*.js' 'src/**/*.js'",
