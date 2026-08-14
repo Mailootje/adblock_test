@@ -354,11 +354,12 @@ adblock.turtlecute.org##.textads</code></pre>
                         <% rows.forEach(function (r) { %>
                         <li class="compat_item">
                             <span class="compat_ico" aria-hidden="true"><%- r.icon %></span>
-                            <span class="compat_main">
-                                <span class="compat_head">
-                                    <b class="compat_name"><%= r.name %></b>
-                                    <% if (r.type) { %><span class="compat_type"><%= r.type %></span><% } %>
-                                </span>
+                            <span class="compat_head">
+                                <b class="compat_name"><%= r.name %></b>
+                                <% if (r.type) { %><span class="compat_type"><%= r.type %></span><% } %>
+                            </span>
+                            <span class="compat_state _<%= r.state %>"><%= STATE_LABEL[r.state] %></span>
+                            <span class="compat_body">
                                 <% if (r.desc) { %>
                                 <span class="compat_on"><%= r.desc %></span>
                                 <% } %>
@@ -372,7 +373,6 @@ adblock.turtlecute.org##.textads</code></pre>
                                 <span class="compat_note"><%- r.note %></span>
                                 <% } %>
                             </span>
-                            <span class="compat_state _<%= r.state %>"><%= STATE_LABEL[r.state] %></span>
                         </li>
                         <% }) %>
                     </ul>

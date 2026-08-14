@@ -146,7 +146,11 @@ main
 		text-decoration: underline
 	@media (max-width: 40em)
 		flex: 1 1 100%
-		margin-left: 0
+		align-items: center
+		min-height: 2.75rem
+		margin: .45rem -.7rem -.45rem
+		padding: 0 .7rem
+		border-top: 1px solid var(--notice-brd)
 
 #dlg_compatibility
 	z-index: 52
@@ -165,15 +169,20 @@ main
 	padding: 0
 	list-style: none
 .compat_item
-	display: flex
-	align-items: flex-start
-	gap: .7rem
+	display: grid
+	grid-template-columns: auto 1fr auto
+	grid-template-areas: "ico head state" ". body body"
+	align-items: start
+	gap: .15rem .7rem
 	padding: .7rem .8rem
 	border-radius: 12px
 	background: var(--bg2)
 	border: 1px solid var(--brd)
+	@media (max-width: 40em)
+		grid-template-columns: auto 1fr
+		grid-template-areas: "state state" "ico head" ". body"
 .compat_ico
-	flex: 0 0 auto
+	grid-area: ico
 	display: flex
 	align-items: center
 	justify-content: center
@@ -184,17 +193,20 @@ main
 	>svg
 		height: 1.15rem
 		width: 1.15rem
-.compat_main
-	flex: 1 1 auto
+.compat_body
+	grid-area: body
 	min-width: 0
 	display: flex
 	flex-direction: column
 	gap: .2rem
 .compat_head
+	grid-area: head
+	min-width: 0
 	display: flex
 	align-items: baseline
 	flex-wrap: wrap
 	gap: .4rem
+	min-height: 1.75rem
 .compat_name
 	font-weight: 600
 .compat_type, .compat_note
@@ -208,7 +220,11 @@ main
 	>span
 		color: var(--txt-h)
 .compat_state
-	flex: 0 0 auto
+	grid-area: state
+	align-self: center
+	@media (max-width: 40em)
+		justify-self: end
+		margin-bottom: .2rem
 	font-size: .75rem
 	font-weight: 600
 	white-space: nowrap
