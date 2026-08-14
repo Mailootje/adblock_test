@@ -79,93 +79,67 @@ main
 	&:focus-visible
 		outline: 2px solid var(--focus)
 		outline-offset: 3px
-.notice
-	border-radius: var(--r-md)
-	text-align: left
-	font-size: .875rem
-	line-height: 1.4
-	background: var(--notice-bg)
-	color: var(--txt)
-	border: 1px solid var(--notice-brd)
-	b
-		color: var(--notice-ac)
-	.notice_ico
-		flex: 0 0 auto
-		height: 1.1rem
-		width: 1.1rem
-		stroke: var(--notice-ac)
-	button
-		display: inline
-		min-width: unset
-		height: auto
-		margin: 0
-		padding: 0
-		border: 0
-		background: transparent
-		box-shadow: none
-		font: inherit
-		font-weight: 600
-		color: var(--notice-ac)
-		text-decoration: underline
-		text-decoration-thickness: 1px
-		text-decoration-skip-ink: auto
-		text-underline-offset: .2em
-		&:active
-			transform: none
-		&:hover
-			text-decoration: none
-.notice_row
+// One info bar, two variants: _warn for the test caveat, _info for the star ask
+.i_box
 	display: flex
 	align-items: center
 	flex-wrap: wrap
 	gap: var(--sp-1) var(--sp-2)
 	margin: 0
 	padding: var(--sp-1) var(--sp-2)
-	>span
-		flex: 1 1 14rem
-		min-width: 0
-	@media (max-width: 40em)
-		align-items: flex-start
-		>svg
-			margin-top: .1rem
-
-.support_box
-	display: flex
-	align-items: center
-	flex-wrap: wrap
-	gap: var(--sp-1) var(--sp-2)
-	padding: var(--sp-1) var(--sp-2)
 	border-radius: var(--r-md)
+	border: 1px solid
 	font-size: .875rem
-	line-height: 1.4
+	line-height: 1.5
 	text-align: left
 	text-decoration: none
 	color: var(--txt)
-	background: var(--info-bg)
-	border: 1px solid var(--info-brd)
 	transition: border-color 160ms ease
+	&._warn
+		--i-brd: var(--notice-brd)
+		--i-ac: var(--notice-ac)
+		background: var(--notice-bg)
+	&._info
+		--i-brd: var(--info-brd)
+		--i-ac: var(--info-ac)
+		background: var(--info-bg)
+	border-color: var(--i-brd)
 	&:hover
-		border-color: var(--info-ac)
+		border-color: var(--i-ac)
+	>span:not(.i_cta)
+		flex: 1 1 16rem
+		min-width: 0
 	@media (max-width: 40em)
 		align-items: flex-start
-		>svg
-			margin-top: .1rem
-	>span:not(.support_cta)
-		flex: 1 1 14rem
-		min-width: 0
-.support_ico
+.i_ico
 	flex: 0 0 auto
 	height: 1.1rem
 	width: 1.1rem
-	fill: var(--info-ac)
-.support_cta
+	margin-top: .1rem
+	stroke: var(--i-ac)
+	&._fill
+		fill: var(--i-ac)
+.i_cta
 	flex: 0 0 auto
+	justify-content: flex-start
+	margin: 0
 	margin-left: auto
-	white-space: nowrap
+	padding: 0
+	border: 0
+	height: auto
+	min-width: unset
+	background: transparent
+	box-shadow: none
+	font: inherit
 	font-weight: 600
-	color: var(--info-ac)
-	.support_box:hover &
+	white-space: nowrap
+	color: var(--i-ac)
+	&:active
+		transform: none
+	&:hover, .i_box:hover &
 		text-decoration: underline
+		text-decoration-thickness: 1px
+		text-underline-offset: .2em
 	@media (max-width: 40em)
 		flex: 1 1 100%
 		margin-left: calc(1.1rem + var(--sp-2))
